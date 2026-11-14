@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  ItemHomepage(this.name, this.icon, this.color);
 }
 
 class MyHomePage extends StatelessWidget {
@@ -15,9 +16,9 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "PBP B";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Proyek", Icons.folder),
-    ItemHomepage("Tambah Proyek", Icons.add_circle),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Lihat Proyek", Icons.folder, Colors.amber[700]!),
+    ItemHomepage("Tambah Proyek", Icons.add_circle, const Color.fromARGB(255, 30, 116, 222)),
+    ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 210, 36, 36)),
   ];
 
   @override
@@ -53,7 +54,7 @@ class MyHomePage extends StatelessWidget {
 
             const SizedBox(height: 16.0),
 
-            // Bagian tengah: pesan sambutan dan kisi tombol menu portofolio.
+            // Bagian tengah: pesan sambutan dan isi tombol menu portofolio.
             Center(
               child: Column(
                 children: [
@@ -72,7 +73,7 @@ class MyHomePage extends StatelessWidget {
                   GridView.count(
                     primary: true,
                     padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 10,
+                    crossAxisSpacing: 5,
                     mainAxisSpacing: 10,
                     crossAxisCount: 3,
                     // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
@@ -132,7 +133,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       // Menggunakan warna sekunder dari skema tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         // Aksi ketika kartu ditekan oleh pengguna.
