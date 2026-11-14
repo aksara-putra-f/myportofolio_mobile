@@ -18,7 +18,7 @@ class MyHomePage extends StatelessWidget {
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder, Colors.amber[700]!),
     ItemHomepage("Tambah Proyek", Icons.add_circle, const Color.fromARGB(255, 30, 116, 222)),
-    ItemHomepage("Logout", Icons.logout, const Color.fromARGB(255, 210, 36, 36)),
+    ItemHomepage("Hapus Proyek", Icons.delete, const Color.fromARGB(255, 210, 36, 36)),
   ];
 
   @override
@@ -39,54 +39,81 @@ class MyHomePage extends StatelessWidget {
       // Body halaman utama dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Baris horizontal untuk menampilkan 3 InfoCard secara sejajar.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                InfoCard(title: 'NPM', content: npm),
-                InfoCard(title: 'Name', content: nama),
-                InfoCard(title: 'Class', content: kelas),
-              ],
-            ),
-
-            const SizedBox(height: 16.0),
-
-            // Bagian tengah: pesan sambutan dan isi tombol menu portofolio.
-            Center(
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
-                      'Selamat datang di MyPortfolio Mobile!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.0,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // pesan sambutan
+              const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 16, 0, 30),
+                      child: Text(
+                        'Selamat datang di MyPortfolio Mobile!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25.0,
+                        ),
                       ),
                     ),
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      border: Border.all(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 3.0
+                      )
+                    ),
+                    child: Image.asset(
+                            'assets/images/Foto Diri.png',
+                            width: 150,
+                            height: 150,
+                          ),
                   ),
 
-                  // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
-                  GridView.count(
-                    primary: true,
-                    padding: const EdgeInsets.all(20),
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 10,
-                    crossAxisCount: 3,
-                    // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
-                    shrinkWrap: true,
-                    children: items.map((ItemHomepage item) {
-                      return ItemCard(item);
-                    }).toList(),
-                  ),
+                  const SizedBox(height: 10.0),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InfoCard(title: 'NPM', content: npm),
+                      InfoCard(title: 'Name', content: nama),
+                      InfoCard(title: 'Class', content: kelas),
+                    ],
+                  )
                 ],
               ),
-            ),
-          ],
-        ),
+
+              const SizedBox(height: 16.0),
+
+              // Bagian tengah: tombol-tombol menu portofolio.
+              Center(
+                child: Column(
+                  children: [
+                    // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
+                    GridView.count(
+                      primary: true,
+                      padding: const EdgeInsets.all(20),
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 3,
+                      // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
+                      shrinkWrap: true,
+                      children: items.map((ItemHomepage item) {
+                        return ItemCard(item);
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ) 
       ),
     );
   }
@@ -106,10 +133,11 @@ class InfoCard extends StatelessWidget {
       elevation: 2.0,
       child: Container(
         // Menyesuaikan lebar kartu dengan proporsi layar (dibagi 3.5).
-        width: MediaQuery.of(context).size.width / 3.5,
+        width: MediaQuery.of(context).size.width / 1.25,
         padding: const EdgeInsets.all(16.0),
         // Menyusun teks title dan content secara vertikal.
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               title,
