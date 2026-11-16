@@ -59,159 +59,192 @@ class MyHomePage extends StatelessWidget {
       ),
 
       // Body halaman utama dengan padding di sekelilingnya.
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // pesan sambutan
-              const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 16, 0, 30),
-                      child: Text(
-                        'Selamat datang di MyPortfolio Mobile!',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25.0,
-                        ),
-                      ),
-                    ),
-
-              Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(
-                        color: Colors.black,
-                        style: BorderStyle.solid,
-                        width: 3.0
-                      )
-                    ),
-                    child: Image.asset(
-                            'assets/images/Foto Diri.png',
-                            width: 150,
-                            height: 150,
+                  // pesan sambutan
+                  const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 16, 0, 30),
+                          child: Text(
+                            'Selamat datang di MyPortfolio Mobile!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.0,
+                            ),
                           ),
-                  ),
-
-                  const SizedBox(height: 10.0),
+                        ),
 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      InfoCard(title: 'NPM', content: npm),
-                      InfoCard(title: 'Nama', content: nama),
-                      InfoCard(title: 'Kelas', content: kelas),
+                      Container(
+                        padding: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          border: Border.all(
+                            color: Colors.black,
+                            style: BorderStyle.solid,
+                            width: 3.0
+                          )
+                        ),
+                        child: Image.asset(
+                                'assets/images/Foto Diri.png',
+                                width: 150,
+                                height: 150,
+                              ),
+                      ),
+
+                      const SizedBox(height: 10.0),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InfoCard(title: 'NPM', content: npm),
+                          InfoCard(title: 'Nama', content: nama),
+                          InfoCard(title: 'Kelas', content: kelas),
+                        ],
+                      )
                     ],
-                  )
+                  ),
+
+                  const SizedBox(height: 50.0),
+
+                  // Bagian tengah: tombol-tombol menu portofolio.
+                  Center(
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            // Judul section tombol-tombol
+                            SectionTitle("Project"),
+
+                            const SizedBox(height: 3.0),
+
+                            // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
+                            GridView.count(
+                              primary: false,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 3,
+                              // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
+                              shrinkWrap: true,
+                              children: projectItems.map((ItemHomepage item) {
+                                return ItemCard(item);
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                        
+                        Column(
+                          children: [
+                            // Judul section tombol-tombol
+                            const SizedBox(height: 20.0),
+                            
+                            SectionTitle("Education"),
+
+                            const SizedBox(height: 3.0),
+
+                            // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
+                            GridView.count(
+                              primary: false,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 3,
+                              // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
+                              shrinkWrap: true,
+                              children: educationItems.map((ItemHomepage item) {
+                                return ItemCard(item);
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+
+                        Column(
+                          children: [
+                            // Judul section tombol-tombol
+                            const SizedBox(height: 20.0),
+                            
+                            SectionTitle("Skill"),
+
+                            const SizedBox(height: 3.0),
+
+                            // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
+                            GridView.count(
+                              primary: false,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 3,
+                              // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
+                              shrinkWrap: true,
+                              children: skillItems.map((ItemHomepage item) {
+                                return ItemCard(item);
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+
+                        Column(
+                          children: [
+                            // Judul section tombol-tombol
+                            const SizedBox(height: 20.0),
+
+                            SectionTitle("Experience"),
+
+                            const SizedBox(height: 3.0),
+
+                            // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
+                            GridView.count(
+                              primary: false,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 10,
+                              crossAxisCount: 3,
+                              // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
+                              shrinkWrap: true,
+                              children: experienceItems.map((ItemHomepage item) {
+                                return ItemCard(item);
+                              }).toList(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
+            ),
 
-              const SizedBox(height: 20.0),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
+              child: Column(
+                children: [
+                  Divider(
+                    color: const Color.fromARGB(255, 203, 203, 203),
+                    thickness: 1.0,
+                  ),
 
-              // Bagian tengah: tombol-tombol menu portofolio.
-              Center(
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        // Judul section tombol-tombol
-                        SectionTitle("Project"),
-
-                        const SizedBox(height: 10.0),
-
-                        // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
-                        GridView.count(
-                          primary: false,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                          // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
-                          shrinkWrap: true,
-                          children: projectItems.map((ItemHomepage item) {
-                            return ItemCard(item);
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                    
-                    Column(
-                      children: [
-                        // Judul section tombol-tombol
-                        SectionTitle("Education"),
-
-                        const SizedBox(height: 10.0),
-
-                        // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
-                        GridView.count(
-                          primary: false,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                          // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
-                          shrinkWrap: true,
-                          children: educationItems.map((ItemHomepage item) {
-                            return ItemCard(item);
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-
-                    Column(
-                      children: [
-                        // Judul section tombol-tombol
-                        SectionTitle("Skill"),
-
-                        const SizedBox(height: 10.0),
-
-                        // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
-                        GridView.count(
-                          primary: false,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                          // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
-                          shrinkWrap: true,
-                          children: skillItems.map((ItemHomepage item) {
-                            return ItemCard(item);
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-
-                    Column(
-                      children: [
-                        // Judul section tombol-tombol
-                        SectionTitle("Experience"),
-
-                        const SizedBox(height: 10.0),
-
-                        // GridView menampilkan kartu tombol dalam tata letak kisi 3 kolom.
-                        GridView.count(
-                          primary: false,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                          // shrinkWrap agar ukuran kisi menyesuaikan tinggi konten anak.
-                          shrinkWrap: true,
-                          children: experienceItems.map((ItemHomepage item) {
-                            return ItemCard(item);
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-
-                  ],
-                ),
+                  OutlinedButton.icon(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          SnackBar(content: Text("Kamu telah menekan tombol Logout!"))
+                        );
+                    }, 
+                    label: Text("Logout"),
+                    icon: Icon(Icons.logout),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ) 
-      ),
+            )
+          ]
+        )
+      )
     );
   }
 }
