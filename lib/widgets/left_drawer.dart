@@ -36,6 +36,7 @@ class LeftDrawer extends StatelessWidget {
               ],
             ),
           ),
+          
           ListTile(
             leading: const Icon(Icons.home_outlined),
             title: const Text('Home'),
@@ -49,6 +50,9 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+
+          DrawerDivider("Form Page"),
+
           ListTile(
             leading: const Icon(Icons.add_circle_outline),
             title: const Text('Add Project'),
@@ -64,6 +68,34 @@ class LeftDrawer extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DrawerDivider extends StatelessWidget {
+  final String sectionTitle;
+  const DrawerDivider(this.sectionTitle, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Divider(
+          color: const Color.fromARGB(255, 203, 203, 203),
+          thickness: 1.0,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(
+          sectionTitle,
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: const Color.fromARGB(255, 148, 148, 148)
+          ),
+        ),
+        )
+      ],
     );
   }
 }
