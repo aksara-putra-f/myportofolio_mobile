@@ -64,3 +64,34 @@ Belum ada log
 5. BuildContext penting dalam Flutter karena memungkinkan widget untuk mengetahui posisinya dalam widget tree. BuildContext memungkinkan suatu widget untuk mengakses informasi pada widget-widget yang berada di atasnya. Pada method pembangun widget, seperti build(), BuildContext digunakan dengan cara memasukkannya sebagai parameter function tersebut. Lalu, widget dapat mengakses BuildContext melalui parameter tersebut.
 
 6. Hot reload pada flutter memungkinkan pengembang untuk me-reload aplikasi tanpa me-reset state dari app tersebut. Hot reload cocok jika kita ingin melihat hasil perubahan UI tanpa ingin me-reset state dari app. Lalu, hot restart juga melakukan reload app dan menampilkan hasil perubahan UI, tetapi state dari aplikasi juga akan ter-reset. Gunakan hot reload ketika perubahan hanya berkaitan dengan UI (perubahan terjadi di dalam function build() saja). Gunakan hot restart ketika perubahan juga terjadi di luar function build, misalnya ada perubahan logika kode, variabel, dan lain-lain. Gunakan full restart jika diperlukan kompilasi ulang, misalnya jika ada perubahan depedensi pada app kita.
+
+### Tugas 2
+1. Navigator.push(): Meletakkan page tujuan pada stack page paling atas.
+   Navigator.pushReplacement(): Mengganti page pada tumpukan stack page paling atas dengan page tujuan.
+   Navigator.pop(): Menghapus page paling atas dari tumpukan stack page.
+
+   Baik navigator.push() maupun navigator.pushReplacement() bertujuan untuk pindah ke page baru, sedangka navigator.pop() bertujuan untuk kembali ke page sebelumnya yang telah dikunjungi.
+
+   Pada kartu aksi "membuat form" pada halaman menu.dart, metode navigator yang digunakan adalah navigator.push(). Lalu, untuk kembali ke halaman menu.dart dari page form, jika melalui tombol aksi pada menu, user cukup menekan tombol back pada devicenya, navigator yang digunakan adalah navigator.pop(). Namun, jika untuk ke form page user melalui drawer, user tidak bisa kembali ke menu dengan menekan back pada device karena navigator yang digunakan untuk berpindah dari menu ke form page adalah navigator.pushReplacement().
+
+2. Scaffold adalah widget yang menyediakan kerangka dasar dari sebuah page. Dua atribut yang dimiliki   
+   widget Scaffold adalah appbar dan drawer. Appbar diisi oleh class widget AppBar(), sedangkan atribut drawer diisi oleh class widget Drawer().
+   Penggunaan tema yang didefinisikan pada konfigurasi app melalui MaterialApp dapat digunakan oleh widget-widget di dalamnya melalui ```context```. Cara menggunakannya adalah dengan menulis ```Theme.of(context).colorScheme.secondary``` sebagai atribut warna dari sebuah widget.
+   Contoh:
+   ```dart
+   Widget build(BuildContext context) {
+    return Material(
+      // Menggunakan warna sekunder dari skema tema aplikasi.
+      color: Theme.of(context).colorScheme.secondary,
+      borderRadius: BorderRadius.circular(12),
+      ...
+   ```
+
+3. Form menggunakan layouting Column karena pada umumnya (pada kebanyakan kasus form) field-field form 
+   disusun secara berurutan dari atas ke bawah. Dalam membuat susunan field form, kita dapat menyisipkan widget pengatur jarak antarfield, misalnya menggunakan padding atau sizedbox. Tujuannya agar setiap field tidak terlihat menempel satu sama lain sehingga user dapat melihat field demi field dengan lebih nyaman (user dapat melihat bahwa ada beberapa field terpisah pada form tersebut). 
+   Salah satu permasalahan dalam menggunakan widget Column() adalah ketika isi dari column melebihi layar. Widget Column() tidak membawa scroll bawaan. Maka dari itu, kita menggunakan widget SingleChildScrollView() (widget penggulir) agar kita dapat melakukan scroll ketika content di dalam Column() melebihi layar.
+
+4. GlobalKey&lt;FormState&gt; digunakan sebagai key dari form sehingga widget lain pada tree dapat   
+   mengakses status internal dari widget Form melalui key tersebut. Validator adalah atribute pada widget field form, berfungsi untuk mendefinisikan bagaimana isian pada field tersebut divalidasi. Validate() berfungsi untuk mengecek apakah form valid atau tidak, hasilnya didasarkan pada hasil validasi setiap field sesuai dengan definisi yang ditulis sebagai atribut validasi tiap field.
+   Apakah isian field diterima atau ditolak tergantung pada nilai yang dimasukkan dan pendefinisian validasi untuk field tersebut. Misalnya suatu field mengharuskan nilai input tidak boleh berupa string kosong. Maka, jika user memasukkan input kosong atau string berupa whitespace, isian field tidak akan diterima.   
+   Alasan memilih jenis input saja tidak cukup adalah hal tersebut tidak menjadim input user sudah sesuai. Jenis input menjamin input user mengikuti format tertentu, tetapi tidak menjamin bahwa nilai/value yang dimasukkan user telah sesuai dengan ketentuan app.
