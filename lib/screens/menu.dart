@@ -26,9 +26,9 @@ class MyHomePage extends StatelessWidget {
 
   // Tombol-tombol untuk education
   final List<ItemHomepage> educationItems = [
-    ItemHomepage("Lihat Education", Icons.folder, Colors.amber[700]!),
-    ItemHomepage("Tambah Education", Icons.add_circle, const Color.fromARGB(255, 30, 116, 222)),
-    ItemHomepage("Hapus Education", Icons.delete, const Color.fromARGB(255, 210, 36, 36)),
+    ItemHomepage("Lihat Pendidikan", Icons.folder, Colors.amber[700]!),
+    ItemHomepage("Tambah Pendidikan", Icons.add_circle, const Color.fromARGB(255, 30, 116, 222)),
+    ItemHomepage("Hapus Pendidikan", Icons.delete, const Color.fromARGB(255, 210, 36, 36)),
   ];
   
   // Tombol-tombol untuk skill

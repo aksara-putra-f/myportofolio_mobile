@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
-import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/form/project_form.dart';
+import 'package:myportofolio_mobile/screens/form/education_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -55,13 +56,26 @@ class LeftDrawer extends StatelessWidget {
 
           ListTile(
             leading: const Icon(Icons.add_circle_outline),
-            title: const Text('Add Project'),
+            title: const Text('Tambah Data Proyek'),
             // Navigasi ke halaman tambah proyek
             onTap: () {
               Navigator.pushReplacement(
                 context, 
                 MaterialPageRoute(
                   builder: (context) => ProjectFormPage()
+                )
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_circle_outline),
+            title: const Text('Tambah Data Edukasi'),
+            // Navigasi ke halaman tambah proyek
+            onTap: () {
+              Navigator.pushReplacement(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => EducationFormPage()
                 )
               );
             },
