@@ -3,6 +3,7 @@ import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/form/project_form.dart';
 import 'package:myportofolio_mobile/screens/form/education_form.dart';
 import 'package:myportofolio_mobile/screens/form/skill_form.dart';
+import 'package:myportofolio_mobile/screens/form/experience_form.dart';
 
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
@@ -48,6 +49,15 @@ class ItemCard extends StatelessWidget {
               context, 
               MaterialPageRoute(
                 builder: (context) => SkillFormPage()
+              )
+            );
+          }
+          
+          if (item.name == "Tambah Experience") {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => ExperienceFormPage()
               )
             );
           }

@@ -3,6 +3,7 @@ import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/form/project_form.dart';
 import 'package:myportofolio_mobile/screens/form/education_form.dart';
 import 'package:myportofolio_mobile/screens/form/skill_form.dart';
+import 'package:myportofolio_mobile/screens/form/experience_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -90,6 +91,19 @@ class LeftDrawer extends StatelessWidget {
                 context, 
                 MaterialPageRoute(
                   builder: (context) => SkillFormPage()
+                )
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_circle_outline),
+            title: const Text('Tambah Data Pengalaman'),
+            // Navigasi ke halaman tambah proyek
+            onTap: () {
+              Navigator.pushReplacement(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => ExperienceFormPage()
                 )
               );
             },
